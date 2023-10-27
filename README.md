@@ -1,1 +1,1 @@
-echo "# tdengine-ubuntu-docker" >> README.md
+# tdengine-ubuntu-docker
