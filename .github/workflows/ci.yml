@@ -6,7 +6,7 @@ on:
       - '*'
 
 env:
-  REGISTRY: '568720945'
+  REGISTRY: ''
   IMAGE_NAME: 'tdengine'
 
 jobs:
@@ -28,5 +28,5 @@ jobs:
         platforms: linux/amd64, linux/arm64
         push: true
         tags: |
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.tags }}
+            568720945/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.tags }}
       
