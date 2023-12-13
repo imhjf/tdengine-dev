@@ -14,18 +14,25 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-    - name: Log into registry
-      uses: docker/login-action@v2
-      with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ secrets.DOCKER_USER }}
-          password: ${{ secrets.DOCKER_PASSWD }}
-          
-    - name: Build and push Docker image
-      uses: docker/build-push-action@v4
-      with:
-        context: .
-        platforms: linux/amd64, linux/arm64
-        push: true
-        tags: ${{ env.IMAGE_NAME }}:${{ GITHUB_REF#refs/*/ }}
+      - uses: actions/checkout@v2
+      - name: Set output
+        id: vars
+        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+      - name: Check output
+        run: echo ${{ steps.vars.outputs.tag }}
+    
+      - name: Log into registry
+        uses: docker/login-action@v2
+        with:
+            registry: ${{ env.REGISTRY }}
+            username: ${{ secrets.DOCKER_USER }}
+            password: ${{ secrets.DOCKER_PASSWD }}
+            
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          platforms: linux/amd64, linux/arm64
+          push: true
+          tags: ${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.t }}
       
