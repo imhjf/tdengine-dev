@@ -7,7 +7,7 @@ on:
 
 env:
   REGISTRY: ''
-  IMAGE_NAME: 'tdengine'
+  IMAGE_NAME: '568720945/tdengine'
 
 jobs:
   build:
@@ -27,5 +27,5 @@ jobs:
         context: .
         platforms: linux/amd64, linux/arm64
         push: true
-        tags: 568720945/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.tags }}
+        tags: ${{ env.IMAGE_NAME }}:${{ GITHUB_REF#refs/*/ }}
       
