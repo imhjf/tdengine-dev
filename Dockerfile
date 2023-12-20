@@ -1,6 +1,6 @@
 FROM ubuntu:focal AS taoslib
 ENV DEBIAN_FRONTEND noninteractive
-ENV TDengine_VERSION ver-3.0.4.1
+ENV TDengine_VERSION ver-3.0.4.2
 RUN set -ex && \
     apt-get update && \
     apt-get install -y curl tzdata gcc cmake build-essential git libssl-dev libgflags2.2 libgflags-dev build-essential libjansson-dev libsnappy-dev liblzma-dev libz-dev zlib1g pkg-config && \
