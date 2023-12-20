@@ -1,4 +1,4 @@
-FROM ubuntu:focal AS taoslib
+FROM golang:1.19
 ENV DEBIAN_FRONTEND noninteractive
 ENV TDengine_VERSION ver-3.0.4.1
 RUN set -ex && \
